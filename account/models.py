@@ -24,7 +24,7 @@ class menuctegorylistview(listapiview):
     queryset = menucategory.objects.all()
     serializers_class = menucategoryserializer
 
-from django.urls import path
+
 from .views import menucategorylistview
 
 urlpatterns = [
