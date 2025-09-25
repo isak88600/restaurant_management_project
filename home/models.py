@@ -1,8 +1,10 @@
 from django.db import models
+from .models import orderstatus
 
-# Create your models here
-class MenuCategroy(models.Model):
-    name = models.CharFields(max_length=100, unique=True
+class order(models.model):
+
+    status = models.foreignkey(orderstatus, on_delete=models.set_null, null=True)
+
 
     def __str__(self):
-        return self.name
+        return f"order #{self.id} - self : {self.status}"
