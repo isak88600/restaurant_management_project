@@ -28,3 +28,4 @@ class orderserializer(serializers.modelserializer):
         model = order
         fields = ['id','date','total_price','item']
 
+
