@@ -22,3 +22,17 @@ def validate_price(self, value):
     if value < 0:
         raise serializers.validateerror("price must be a positive number.")
     return value
+
+from rest_framework.views import apiview
+from rest_framework.response import responsef
+from rest_framewok import status
+from datetime import date
+from. models import coupon
+from. serializer import couponserializer
+
+calss couponvalidateview(apiview):
+def post(self, request):
+    code = request.data.get('code')
+    
+    if not code:
+        
