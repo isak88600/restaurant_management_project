@@ -1,37 +1,24 @@
 from django.db import models
+class activeordermanager(models.manager):
+    def get_atctive_orders(self):
+        return self.get_queryset().filter(status_in=['pending','processng'])
+class order(models.model):
+    status_choices = [
+        ('pending','pending'),
+        ('processing','processing'),
+        ('completed','completed'),
+        ('cancelled','cancelled'),
+    ]
 
-# Create your models here.
-
-class menucategory(models.model):
-    name = models.charfield(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-from rest_framework import serializers
-from .models import menucategory
-
-class menucategoryserializer(serializers.modelserializer):
-    class meta:
-        model = menucategroy
-        fields['name']
-
-from rest_framework.generics import listapiview
-from .models import menucategory
-from .serializers import menucategoryserializer
-
-class menuctegorylistview(listapiview):
-    queryset = menucategory.objects.all()
-    serializers_class = menucategoryserializer
+    staus = models.charfield(max_length=20, choices=status_choices)
+    create_at = models.datetimefield(auto_now_add=True)
 
 
-from .views import menucategorylistview
 
-urlpatterns = [
-    path('menu-categories/',menucategorylistview.as_view(), name='menu-category-list'),
-]
 
-INSTALLED_APPS = [
-    'rest_framework',
-    'home',
-]
+     objects = activeordermanager()
+
+     from orders.models import order
+
+     active_orders = order.objects.get_active_orders()
+     print(active_orders)
