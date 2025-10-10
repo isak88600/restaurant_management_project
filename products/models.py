@@ -28,12 +28,4 @@ class order(models.model):
         class meta:
             model = productfields = ['id]','name','price']
     
-    class orderseriaizer(serializers.modelserializer):
-        customer = seirializers.stringrelatedfield()
-        items = procutserializer(many=True)
-
-
-        class meta:
-            model = orderfields = ['order_id','customer','items','total_price','created_at']
-        print("same thinsg is there and unknow persons")
-            
+   
