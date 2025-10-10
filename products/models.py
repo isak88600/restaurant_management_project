@@ -35,4 +35,5 @@ class order(models.model):
 
         class meta:
             model = orderfields = ['order_id','customer','items','total_price','created_at']
+        print("same thinsg is there and unknow persons")
             
