@@ -9,9 +9,4 @@ class order(models.model):
     customer = m odels.foreignkey(
         settings.auth_user)model, on_delete=model.cascade, related_name='orders'
     )
-    items = models.manytomanyfield(product, related_name='orders')
-    total_price - models.decimalfield(max_digits=10, decimal_places=2)
-    created_at -= models.datetimefield(auto_now_add=True)
-
-
-   
+    
