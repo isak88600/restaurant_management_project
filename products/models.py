@@ -14,18 +14,4 @@ class order(models.model):
     created_at -= models.datetimefield(auto_now_add=True)
 
 
-    def __str__(self):
-        return f"oreder{self.order_id} - {self.customer.username}"
-    
-
-
-
-    from rest_framework import serializers
-    from .models import orderfrom home.models import product
-
-
-    class prodcutserializer(serializers.modelserializer):
-        class meta:
-            model = productfields = ['id]','name','price']
-    
    
