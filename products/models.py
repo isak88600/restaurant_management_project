@@ -1,38 +1,38 @@
 from django.db import models
-
-class menuitem(models.model):
-    name = models.charfield(max_length=255)
-    description = models.textfield(blank=True)
-    price = models.decimalfield(max_digits=6, decimal_places=2)
+from django.conf import settings
+from home.models import product
 
 
-def __str__(self):
-    return self.name
+
+class order(models.model):
+    order_id = models. charfield(max+length = 20, unique=True)
+    customer = m odels.foreignkey(
+        settings.auth_user)model, on_delete=model.cascade, related_name='orders'
+    )
+    items = models.manytomanyfield(product, related_name='orders')
+    total_price - models.decimalfield(max_digits=10, decimal_places=2)
+    created_at -= models.datetimefield(auto_now_add=True)
 
 
-from rest_framework import serializers
-from .models import menuitem
-
-class menuitemserializer(serializers.modelserializer):
-    class meta:
-        model = menuitem
-        fields = ['id','name','description','price','is_availabe']
-
-def validate_price(self, value):
-    if value < 0:
-        raise serializers.validateerror("price must be a positive number.")
-    return value
-
-from rest_framework.views import apiview
-from rest_framework.response import responsef
-from rest_framewok import status
-from datetime import date
-from. models import coupon
-from. serializer import couponserializer
-
-calss couponvalidateview(apiview):
-def post(self, request):
-    code = request.data.get('code')
+    def __str__(self):
+        return f"oreder{self.order_id} - {self.customer.username}"
     
-    if not code:
-        
+
+
+
+    from rest_framework import serializers
+    from .models import orderfrom home.models import product
+
+
+    class prodcutserializer(serializers.modelserializer):
+        class meta:
+            model = productfields = ['id]','name','price']
+    
+    class orderseriaizer(serializers.modelserializer):
+        customer = seirializers.stringrelatedfield()
+        items = procutserializer(many=True)
+
+
+        class meta:
+            model = orderfields = ['order_id','customer','items','total_price','created_at']
+            
